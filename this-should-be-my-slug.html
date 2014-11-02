@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Tim Martin - Articles by Tim Martin</title>
+    <title>Haml Test - Tim Martin
+</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Inconsolata|Fira Sans">
     <link rel="stylesheet" href="http://timmart.in/theme/css/main.css">
@@ -19,15 +20,21 @@
   <p>You can see how the sausage is made here.</p>
 </footer>  </aside>
   <main>
-<nav>
-  <h1>Index</h1>
-  <ul>
-    <li>
-      <time datetime="2014-11-02T00:00:00"> 2014-11-02 </time>
-      <a href="http://timmart.in/this-should-be-my-slug.html"> Haml Test</a>
-    </li>
-  </ul>
-</nav>
+<article>
+  <h1>Haml Test</h1>
+  <time datetime="2014-11-02T00:00:00">Sun 02 November 2014</time>
+  
+    <p>Okay, so I shouldn't put a heading here at the beginnging of the body because pelican is going to parse the title from the <em>head</em> tag; I then use the title to create an H1 in front of this body content.</p>
+    <p>And here's another paragraph.</p>
+    <section>
+      <h2>This is a section</h2>
+      <p>And the text for that section! Voila!</p>
+      <code data-gist-file="package.json" data-gist-id="1b9deaa419f61bfe6a77"></code>
+    </section>
+    <p>Very nice.</p>
+    <img src="https://www.gnu.org/graphics/gplv3-127x51.png">
+  
+</article>
   </main>
   </body>
 </html>

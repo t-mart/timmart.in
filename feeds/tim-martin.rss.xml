@@ -1,3 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tim Martin</title><link>/</link><description></description><atom:link href="/feeds/tim-martin.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 31 Oct 2014 12:12:12 -0400</lastBuildDate><item><title>My super title</title><link>/this-is-in-the-url-right.html</link><description>&lt;p&gt;hey there bufdydd&lt;/p&gt;
-</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Tim Martin</dc:creator><pubDate>Fri, 31 Oct 2014 12:12:12 -0400</pubDate><guid>tag:,2014-10-31:this-is-in-the-url-right.html</guid><category>foo</category><category>bar</category><category>tag</category></item></channel></rss>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tim Martin</title><link>http://timmart.in/</link><description>Is it day or night right now?</description><atom:link href="http://timmart.in/feeds/tim-martin.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 02 Nov 2014 00:00:00 -0400</lastBuildDate><item><title>Haml Test</title><link>http://timmart.in/this-should-be-my-slug.html</link><description>
+    &lt;p&gt;Okay, so I shouldn't put a heading here at the beginnging of the body because pelican is going to parse the title from the &lt;em&gt;head&lt;/em&gt; tag; I then use the title to create an H1 in front of this body content.&lt;/p&gt;
+    &lt;p&gt;And here's another paragraph.&lt;/p&gt;
+    &lt;section&gt;
+      &lt;h2&gt;This is a section&lt;/h2&gt;
+      &lt;p&gt;And the text for that section! Voila!&lt;/p&gt;
+      &lt;code data-gist-file="package.json" data-gist-id="1b9deaa419f61bfe6a77"&gt;&lt;/code&gt;
+    &lt;/section&gt;
+    &lt;p&gt;Very nice.&lt;/p&gt;
+    &lt;img src="https://www.gnu.org/graphics/gplv3-127x51.png"&gt;
+  </description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Tim Martin</dc:creator><pubDate>Sun, 02 Nov 2014 00:00:00 -0400</pubDate><guid>tag:timmart.in,2014-11-02:this-should-be-my-slug.html</guid></item></channel></rss>
