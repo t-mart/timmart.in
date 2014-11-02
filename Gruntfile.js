@@ -6,23 +6,42 @@ module.exports = function(grunt) {
 
     devConf: 'pelicanconf.py',
     prodConf: 'publishconf.py',
-    contentDir: 'content',
+    hamlContentDir: 'content/haml',
+    contentDir: 'content/html',
     outputDir: 'output',
+    themeDir: 'timmart.in_theme',
 
     watch: {
       output: {
-        files: ['<%= outputDir %>/*'],
+        files: ['<%= outputDir %>/**/*'],
         options: {
           livereload: true
         }
       },
       pelicanDev: {
-        files: ['<%= devConf %>', '<%= contentDir %>/**/*'],
+        files: ['<%= contentDir %>/**/*', '<%= themeDir %>/**/*', '<%= devConf %>'],
         tasks: 'shell:pelican:dev'
       },
       pelicanProd: {
-          files: ['<%= prodConf %>', '<%= contentDir %>/**/*'],
-          tasks: 'shell:pelican:prod'
+        files: ['<%= contentDir %>/**/*', '<%= themeDir %>/**/*', '<%= prodConf %>'],
+        tasks: 'shell:pelican:prod'
+      },
+      haml: {
+        files: ['<%= hamlContentDir %>/*.haml'],
+        tasks: 'haml:articles'
+      }
+    },
+
+    haml: {
+      description: "Run articles thru haml",
+      articles: {
+        files: [ {
+          expand: true,
+          cwd: '<%= hamlContentDir %>',
+          src: ['*.haml'],
+          dest: '<%= contentDir %>',
+          ext: '.html'
+        } ]
       }
     },
 
@@ -48,7 +67,7 @@ module.exports = function(grunt) {
           var isoDate = new Date().toISOString();
           return 'ghp-import -p -m "update ' + isoDate + '" <%= outputDir %>';
         }
-      }
+      },
     },
 
     concurrent: {
@@ -57,10 +76,10 @@ module.exports = function(grunt) {
         limit: 4
       },
       serveDev: {
-        tasks: ['watch:pelicanDev', 'watch:output', 'connect:server']
+        tasks: ['watch:pelicanDev', 'watch:output', 'watch:haml', 'connect:server']
       },
       serveProd: {
-        tasks: ['watch:pelicanProd', 'watch:output', 'connect:server']
+        tasks: ['watch:pelicanProd', 'watch:output', 'watch:haml', 'connect:server']
       },
     },
 
@@ -74,6 +93,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-haml2html');
 
   // my tasks
   grunt.registerTask('dev-serve', 'Start a server that watches for content changes and runs pelican with development settings', ['shell:pelican:dev', 'concurrent:serveDev']);

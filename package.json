@@ -7,6 +7,12 @@
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-connect": "^0.8.0",
     "grunt-contrib-watch": "^0.6.1",
+    "grunt-haml2html": "^0.3.0",
     "grunt-shell": "^1.1.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/t-mart/timmart.in"
+  },
+  "private": true
 }

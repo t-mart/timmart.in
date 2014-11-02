@@ -1,0 +1,80 @@
+html { font-family: 'Fira Sans', sans-serif; }
+h1 { text-transform: uppercase }
+h1, h2 { font-weight: normal; }
+
+body {margin: 0}
+
+main {
+  line-height: 1.6em;
+  display: block;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px 10px 0;
+}
+
+main pre {
+  overflow-x: auto;
+  background-color: #F4F4F4;
+  padding: 10px;
+  font-family: 'Inconsolata', 'sans-serif';
+}
+
+footer {
+  text-align: center;
+}
+
+a { color:#268bd2; text-decoration:none; }
+a:hover { text-decoration: underline; }
+
+/* Sidebar */
+
+aside {
+  width: 200px; height: 100%;
+  position: fixed;
+  top: 0; left: 0;
+  padding: 50px;
+  background-color: #354a57;
+  color: #fefdf8;
+}
+
+aside > p { margin: 0; }
+
+#nav li {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  margin-bottom: 10px;
+  list-style: none;
+}
+
+#nav li time {
+  margin-right: 20px;
+  margin-left: -10px;
+  display: inline-block;
+  width: 140px;
+  text-align: right;
+  color: #aaa;
+}
+
+main {
+  margin: 40px 0 0 320px;
+}
+#comments {
+  margin: 0 0 0 300px;
+}
+
+@media (max-width: 800px) {
+  body > aside {
+    width: 100%;
+    height: auto;
+    padding: 14px;
+    position: static;
+    font-size: 80%;
+    text-align: center;
+  }
+  main {
+    margin: 0 auto;
+    padding-top: 5px;
+  }
+}

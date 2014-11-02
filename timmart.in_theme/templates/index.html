@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav>
+  <h1>Index</h1>
+  <ul>
+    {% for article in articles_page.object_list %}
+    <li>
+      <time datetime="{{ article.date.isoformat() }}"> {{ article.date.strftime('%Y-%m-%d') }} </time>
+      <a href="{{ SITEURL }}/{{ article.url }}"> {{ article.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</nav>
+{% endblock content %}
