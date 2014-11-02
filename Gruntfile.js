@@ -38,7 +38,7 @@ module.exports = function(grunt) {
       ghpimport: {
         command: function() {
           var isoDate = new Date().toISOString();
-          return 'ghp-import -m "update ' + isoDate + '"';
+          return 'ghp-import -m "update ' + isoDate + '" <%= outputDir %>';
         }
       }
     },
