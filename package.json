@@ -1,5 +1,7 @@
 {
-  "name": "local-site-dev",
+  "name": "timmart.in-grunt-tasks",
+  "version": "0.0.1",
+  "description": "A set of functions to publish my personal blog.",
   "devDependencies": {
     "grunt-concurrent": "^1.0.0",
     "grunt-contrib-clean": "^0.6.0",

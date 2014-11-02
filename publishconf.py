@@ -15,8 +15,6 @@ RELATIVE_URLS = False
 
 DELETE_OUTPUT_DIRECTORY = True
 
-DEV = False
-
 # Following items are often useful when publishing
 
 #DISQUS_SITENAME = ""

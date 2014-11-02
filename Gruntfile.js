@@ -10,11 +10,19 @@ module.exports = function(grunt) {
     outputDir: 'output',
 
     watch: {
-      site: {
+      output: {
         files: ['<%= outputDir %>/*'],
         options: {
           livereload: true
         }
+      },
+      pelicanDev: {
+        files: ['<%= devConf %>', '<%= contentDir %>/**/*'],
+        tasks: 'shell:pelican:dev'
+      },
+      pelicanProd: {
+          files: ['<%= prodConf %>', '<%= contentDir %>/**/*'],
+          tasks: 'shell:pelican:prod'
       }
     },
 
@@ -32,13 +40,13 @@ module.exports = function(grunt) {
       pelican: {
         command: function(env) {
           var conf = (env === 'dev') ? '<%= devConf %>' : '<%= prodConf %>';
-          return 'pelican -r <%= contentDir %> -o <%= outputDir %> -s ' + conf;
+          return 'pelican <%= contentDir %> -o <%= outputDir %> -s ' + conf;
         }
       },
       ghpimport: {
         command: function() {
           var isoDate = new Date().toISOString();
-          return 'ghp-import -m "update ' + isoDate + '" <%= outputDir %>';
+          return 'ghp-import -p -m "update ' + isoDate + '" <%= outputDir %>';
         }
       }
     },
@@ -48,27 +56,33 @@ module.exports = function(grunt) {
         logConcurrentOutput: true,
         limit: 4
       },
-      devServe: {
-        tasks: ['shell:pelican:dev', 'watch:site', 'connect:server']
+      serveDev: {
+        tasks: ['watch:pelicanDev', 'watch:output', 'connect:server']
       },
-      prodServe: {
-        tasks: ['shell:pelican:prod', 'watch:site', 'connect:server']
+      serveProd: {
+        tasks: ['watch:pelicanProd', 'watch:output', 'connect:server']
       },
     },
 
-    clean: ['**/*.pyc', '__pycache__', '<%= outputDir %>', 'cache']
+    clean: ['__pycache__', '<%= outputDir %>', 'cache']
 
   });
 
+  // plugin tasks
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-clean');
 
-  grunt.registerTask('default', ['concurrent:devServe']);
-  grunt.registerTask('pelican-dev', ['shell:pelican:dev']);
-  grunt.registerTask('pelican-prod', ['shell:pelican:dev']);
-  grunt.registerTask('ghp-import', ['shell:ghpimport']);
+  // my tasks
+  grunt.registerTask('dev-serve', 'Start a server that watches for content changes and runs pelican with development settings', ['shell:pelican:dev', 'concurrent:serveDev']);
+  grunt.registerTask('prod-serve', 'Like dev-serve, but run with production settings', ['shell:pelican:prod', 'concurrent:serveProd']);
 
+  grunt.registerTask('pelican-dev', 'Run pelican with development settings', ['shell:pelican:dev']);
+  grunt.registerTask('pelican-prod', 'Run pelican with production settings', ['shell:pelican:prod']);
+
+  grunt.registerTask('publish', 'Push a production pelican build to github for WWW serving', ['shell:pelican:prod', 'shell:ghpimport']);
+
+  grunt.registerTask('default', 'Alias for dev-serve', ['dev-serve']);
 };
