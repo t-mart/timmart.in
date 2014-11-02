@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Tim Martin</title><link href="/" rel="alternate"></link><link href="/feeds/tim-martin.atom.xml" rel="self"></link><id>/</id><updated>2014-10-31T12:12:12-04:00</updated><entry><title>My super title</title><link href="/this-is-in-the-url-right.html" rel="alternate"></link><updated>2014-10-31T12:12:12-04:00</updated><author><name>Tim Martin</name></author><id>tag:,2014-10-31:this-is-in-the-url-right.html</id><summary type="html">&lt;p&gt;hey there bufdy&lt;/p&gt;
+</summary><category term="foo"></category><category term="bar"></category><category term="tag"></category></entry></feed>
