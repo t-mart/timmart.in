@@ -29,7 +29,7 @@ PLUGINS = [ plugin
         for plugin in os.listdir(path)
             if os.path.isdir(os.path.join(path,plugin)) ]
 
-STATIC_PATHS = ['images', 'docs', 'extra/CNAME']
+STATIC_PATHS = ['extra', 'articles']
 EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},}
 
 DIRECT_TEMPLATES = ('index',)
