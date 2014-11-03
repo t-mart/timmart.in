@@ -4,4 +4,4 @@ node_modules
 output
 venv
 cache
-content/html
+ontent/html/*.html

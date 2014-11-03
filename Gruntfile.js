@@ -20,11 +20,11 @@ module.exports = function(grunt) {
       },
       pelicanDev: {
         files: ['<%= contentDir %>/**/*', '<%= themeDir %>/**/*', '<%= devConf %>'],
-        tasks: 'shell:pelican:dev'
+        tasks: 'shell:pelicanDev'
       },
       pelicanProd: {
         files: ['<%= contentDir %>/**/*', '<%= themeDir %>/**/*', '<%= prodConf %>'],
-        tasks: 'shell:pelican:prod'
+        tasks: 'shell:pelicanProd'
       },
       haml: {
         files: ['<%= hamlContentDir %>/*.haml'],
@@ -56,11 +56,11 @@ module.exports = function(grunt) {
     },
 
     shell: {
-      pelican: {
-        command: function(env) {
-          var conf = (env === 'dev') ? '<%= devConf %>' : '<%= prodConf %>';
-          return 'pelican <%= contentDir %> -o <%= outputDir %> -s ' + conf;
-        }
+      pelicanDev: {
+        command: 'pelican <%= contentDir %> -o <%= outputDir %> -s <%= devConf %>'
+      },
+      pelicanProd: {
+        command: 'pelican <%= contentDir %> -o <%= outputDir %> -s <%= prodConf %>'
       },
       ghpimport: {
         command: function() {
@@ -96,13 +96,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-haml2html');
 
   // my tasks
-  grunt.registerTask('dev-serve', 'Start a server that watches for content changes and runs pelican with development settings', ['shell:pelican:dev', 'concurrent:serveDev']);
-  grunt.registerTask('prod-serve', 'Like dev-serve, but run with production settings', ['shell:pelican:prod', 'concurrent:serveProd']);
+  grunt.registerTask('dev-serve', 'Start a server that watches for content changes and runs pelican with development settings', ['shell:pelicanDev', 'concurrent:serveDev']);
+  grunt.registerTask('prod-serve', 'Like dev-serve, but run with production settings', ['shell:pelicanProd', 'concurrent:serveProd']);
 
-  grunt.registerTask('pelican-dev', 'Run pelican with development settings', ['shell:pelican:dev']);
-  grunt.registerTask('pelican-prod', 'Run pelican with production settings', ['shell:pelican:prod']);
+  grunt.registerTask('pelican-dev', 'Run pelican with development settings', ['shell:pelicanDev']);
+  grunt.registerTask('pelican-prod', 'Run pelican with production settings', ['shell:pelicanProd']);
 
-  grunt.registerTask('publish', 'Push a production pelican build to github for WWW serving', ['shell:pelican:prod', 'shell:ghpimport']);
+  grunt.registerTask('publish', 'Push a production pelican build to github for WWW serving', ['shell:pelicanProd', 'shell:ghpimport']);
 
   grunt.registerTask('default', 'Alias for dev-serve', ['dev-serve']);
 };
