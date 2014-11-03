@@ -11,6 +11,3 @@ sys.path.append(os.curdir)
 from pelicanconf import *
 
 SITEURL = 'http://timmart.in'
-RELATIVE_URLS = False
-
-DELETE_OUTPUT_DIRECTORY = True

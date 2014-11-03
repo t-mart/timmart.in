@@ -4,8 +4,11 @@ from __future__ import unicode_literals
 import os
 
 AUTHOR = 'Tim Martin'
+AUTHOR_EMAIL = 'tim@timmart.in'
 SITENAME = 'Tim Martin'
 SITEURL = ''
+SITESUBTITLE = 'Is it day or night right now?'
+DISQUS_SHORTNAME = 'timmartin'
 
 PATH = 'content'
 
@@ -24,9 +27,14 @@ PLUGIN_PATHS = ['plugins']
 PLUGINS = [ plugin
     for path in PLUGIN_PATHS
         for plugin in os.listdir(path)
-            if os.path.isdir(plugin) ]
+            if os.path.isdir(os.path.join(path,plugin)) ]
 
-STATIC_PATHS = ['images', 'extra/CNAME']
+STATIC_PATHS = ['images', 'docs', 'extra/CNAME']
 EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},}
 
-SITESUBTITLE = 'Is it day or night right now?'
+DIRECT_TEMPLATES = ('index',)
+
+RELATIVE_URLS = False
+
+DELETE_OUTPUT_DIRECTORY = True
+
