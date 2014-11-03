@@ -1,65 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
   <head>
-    <title>Force Directed Graphs - Tim Martin
-</title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Fira Sans">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Force Directed Graphs</title>
+    <meta name="description" content="I write code and talk about tech here.
+">
+
     <link rel="shortcut icon" href="http://www.gravatar.com/avatar/d700efe4c5d1b2f72c74d43d9f3e296f">
-    <link rel="stylesheet" href="http://timmart.in/theme/css/main.css">
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/gist-embed/1.9/gist-embed.min.js"></script>
-  </head>
+
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Fira Sans">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://timmart.in/fdg.html">
+
+    
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    
+    
+</head>
+
 
   <body>
-  <aside>
-<a href="http://timmart.in/"><img src="http://www.gravatar.com/avatar/d700efe4c5d1b2f72c74d43d9f3e296f" id="portrait"></a>
-<h1><a href="http://timmart.in/">Tim Martin</a></h1>
-<p>I write <a href="https://github.com/t-mart">code</a> and talk about tech here and on <a href="https://twitter.com/tmmrtn">twitter</a>. Here's my <a href="http://timmart.in/extra/resume.pdf">resume</a>. Email me at <a href="mailto:tim@timmart.in">tim@timmart.in</a>.</p>  </aside>
-  <main>
-<article>
-  <h1>Force Directed Graphs</h1>
-  <time datetime="2014-11-03T00:00:00">Mon 03 November 2014</time>
-  
-    <div id="svg"></div>
-    <p>The methodology used to create this network graph’s layout is called “force-directed placement” (FDP). The basic idea is of two physical forces existing in the viewing area:</p>
-    <ol>
-      <li>the repulsive force of nodes on other nodes and</li>
-      <li>the attractive force of links that bring nodes together.</li>
-    </ol>
-    <p>The algorithm starts by placing nodes randomly across the viewing area and iterates until an equilibrium of these two forces is found, halting the algorithm.</p>
-    <section>
-      <h2>Parameters</h2>
-      <p>The two forces are parameters to the layout.  I chose for the links to have a constant attraction, but gave the nodes a repulsion inversely proportional to the square of the node’s connectivity; this is why the highly connected nodes 1, 5 cluster towards each other in the center, while the least connected nodes 9, 4 are at the edges of the viewing area. This tends to give the layout a radial interpretation, where node connectivity is negatively correlated with radius from the center. This effect is, however, non-deterministic due to the random initial states inherent to FDPs and these parameters may not provide this effect to all datasets.</p>
-    </section>
-    <section>
-      <h2>Node Size</h2>
-      <p>I also encoded connectivity with node size: highly connected nodes have greater radii and vice versa. This additional encoding of connectivity reinforces its meaning, but also provides a fallback in case a particular FDP run produces a placement that contradicts my intentions from the previous paragraph.</p>
-    </section>
-    <section>
-      <h2>Color</h2>
-      <p>The colormap used for nodes was chosen with the assumption that nodes are not part of a continuity and are more categorical in nature. Therefore, the colors were intended to be discriminable. I used D3.js’s <code>category10()</code> color scale.</p>
-    </section>
-    <section>
-      <h2>Motivation</h2>
-      <p>While my first reaction to the data was to make a planar graph, I thought it more interesting and organic to use an FDP. Human adjustment to particular nodes and links can place undue emphasis on information. Although the randomness of FDPs may not be much better, at least it gives consistent treatment to the whole system.</p>
-    </section>
-    <code data-gist-file="graph.js" data-gist-id="1b9deaa419f61bfe6a77"></code>
-    <script charset="utf-8" src="http://d3js.org/d3.v3.min.js"></script>
-    <script charset="utf-8" src="articles/fdg/graph.js"></script>
-  
-  <footer><hr></footer>
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-var disqus_shortname = 'timmartin'; // required: replace example with your forum shortname
 
-(function() {
-  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></article>
-  </main>
+    <aside>
+      <a href="/"><img src="http://www.gravatar.com/avatar/d700efe4c5d1b2f72c74d43d9f3e296f" id="portrait"></a>
+<h1><a href="/">Tim Martin</a></h1>
+<p>I write <a href="https://github.com/t-mart">code</a> and talk about tech here and on <a href="https://twitter.com/tmmrtn">twitter</a>. Here's my <a href="/assets/resume-91809524734ae670d311673500abd45c.pdf">resume</a>. Email me at <a href="mailto:tim@timmart.in">tim@timmart.in</a>.</p>
+
+    </aside>
+
+    <main>
+    <article>
+  <h1>Force Directed Graphs</h1>
+  <time datetime="2014-11-03 07:06:08 -0500">Nov 3, 2014</time>
+  <div id="svg" data-json-path="/assets/fdg/graphdata-a31696579da471eb3aeb1b233a5e2549.json"></div>
+
+<p>The methodology used to create this network graph’s layout is called “force-directed placement” (FDP). The basic idea is of two physical forces existing in the viewing area:</p>
+
+<ol>
+  <li>the repulsive force of nodes on other nodes and</li>
+  <li>the attractive force of links that bring nodes together.</li>
+</ol>
+
+<p>The algorithm starts by placing nodes randomly across the viewing area and iterates until an equilibrium of these two forces is found, halting the algorithm.</p>
+
+<h1 id="parameters">Parameters</h1>
+<p>The two forces are parameters to the layout.  I chose for the links to have a constant attraction, but gave the nodes a repulsion inversely proportional to the square of the node’s connectivity; this is why the highly connected nodes 1, 5 cluster towards each other in the center, while the least connected nodes 9, 4 are at the edges of the viewing area. This tends to give the layout a radial interpretation, where node connectivity is negatively correlated with radius from the center. This effect is, however, non-deterministic due to the random initial states inherent to FDPs and these parameters may not provide this effect to all datasets.</p>
+
+<h1 id="node-size">Node Size</h1>
+<p>I also encoded connectivity with node size: highly connected nodes have greater radii and vice versa. This additional encoding of connectivity reinforces its meaning, but also provides a fallback in case a particular FDP run produces a placement that contradicts my intentions from the previous paragraph.</p>
+
+<h1 id="color">Color</h1>
+<p>The colormap used for nodes was chosen with the assumption that nodes are not part of a continuity and are more categorical in nature. Therefore, the colors were intended to be discriminable. I used D3.js’s <code>category10()</code> color scale.</p>
+
+<h1 id="motivation">Motivation</h1>
+<p>While my first reaction to the data was to make a planar graph, I thought it more interesting and organic to use an FDP. Human adjustment to particular nodes and links can place undue emphasis on information. Although the randomness of FDPs may not be much better, at least it gives consistent treatment to the whole system.</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno"> 1</span> <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mi">600</span><span class="p">,</span>
+<span class="lineno"> 2</span>     <span class="nx">height</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+<span class="lineno"> 3</span> 
+<span class="lineno"> 4</span> <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scale</span><span class="p">.</span><span class="nx">category10</span><span class="p">();</span>
+<span class="lineno"> 5</span> 
+<span class="lineno"> 6</span> <span class="kd">var</span> <span class="nx">radius</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scale</span><span class="p">.</span><span class="nx">pow</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mi">15</span><span class="p">,</span><span class="mi">30</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]);</span>
+<span class="lineno"> 7</span> 
+<span class="lineno"> 8</span> <span class="kd">var</span> <span class="nx">charge</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scale</span><span class="p">.</span><span class="nx">pow</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span><span class="o">-</span><span class="mi">5000</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]);</span>
+<span class="lineno"> 9</span> 
+<span class="lineno">10</span> <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;#svg&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+<span class="lineno">11</span>     <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+<span class="lineno">12</span>     <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+<span class="lineno">13</span> 
+<span class="lineno">14</span> <span class="kd">var</span> <span class="nx">dataPath</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;#svg&quot;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;data-json-path&quot;</span><span class="p">);</span>
+<span class="lineno">15</span> 
+<span class="lineno">16</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">dataPath</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">graph</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">17</span> 
+<span class="lineno">18</span>   <span class="kd">var</span> <span class="nx">force</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">layout</span><span class="p">.</span><span class="nx">force</span><span class="p">()</span>
+<span class="lineno">19</span>       <span class="p">.</span><span class="nx">size</span><span class="p">([</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">])</span>
+<span class="lineno">20</span>       <span class="p">.</span><span class="nx">nodes</span><span class="p">(</span><span class="nx">graph</span><span class="p">.</span><span class="nx">nodes</span><span class="p">)</span>
+<span class="lineno">21</span>       <span class="p">.</span><span class="nx">links</span><span class="p">(</span><span class="nx">graph</span><span class="p">.</span><span class="nx">links</span><span class="p">)</span>
+<span class="lineno">22</span>       <span class="p">.</span><span class="nx">charge</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">d</span><span class="p">);</span><span class="k">return</span> <span class="nx">charge</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">id</span><span class="p">.</span><span class="nx">degree</span><span class="p">);</span> <span class="p">}</span> <span class="p">)</span>
+<span class="lineno">23</span>       <span class="p">.</span><span class="nx">distance</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="lineno">24</span>       <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;tick&quot;</span><span class="p">,</span> <span class="nx">tick</span><span class="p">)</span>
+<span class="lineno">25</span>       <span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+<span class="lineno">26</span> 
+<span class="lineno">27</span>   <span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">force</span><span class="p">.</span><span class="nx">drag</span><span class="p">()</span>
+<span class="lineno">28</span>       <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;dragstart&quot;</span><span class="p">,</span> <span class="nx">dragstart</span><span class="p">);</span>
+<span class="lineno">29</span> 
+<span class="lineno">30</span>   <span class="kd">var</span> <span class="nx">link</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;.link&quot;</span><span class="p">)</span>
+<span class="lineno">31</span>       <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">graph</span><span class="p">.</span><span class="nx">links</span><span class="p">)</span>
+<span class="lineno">32</span>     <span class="p">.</span><span class="nx">enter</span><span class="p">().</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+<span class="lineno">33</span>       <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;link&quot;</span><span class="p">)</span>
+<span class="lineno">34</span>       <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;#444&quot;</span><span class="p">)</span>
+<span class="lineno">35</span>       <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-opacity&quot;</span><span class="p">,</span> <span class="s2">&quot;.6&quot;</span><span class="p">)</span>
+<span class="lineno">36</span>       <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">);</span>
+<span class="lineno">37</span> 
+<span class="lineno">38</span>   <span class="kd">var</span> <span class="nx">nodeg</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;.node&quot;</span><span class="p">)</span>
+<span class="lineno">39</span>       <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">graph</span><span class="p">.</span><span class="nx">nodes</span><span class="p">)</span>
+<span class="lineno">40</span>     <span class="p">.</span><span class="nx">enter</span><span class="p">().</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+<span class="lineno">41</span>       <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;node&quot;</span><span class="p">)</span>
+<span class="lineno">42</span>       <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;dblclick&quot;</span><span class="p">,</span> <span class="nx">dblclick</span><span class="p">)</span>
+<span class="lineno">43</span>       <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">drag</span><span class="p">);</span>
+<span class="lineno">44</span> 
+<span class="lineno">45</span>   <span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">nodeg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+<span class="lineno">46</span>       <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">radius</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">id</span><span class="p">.</span><span class="nx">degree</span><span class="p">);</span> <span class="p">}</span> <span class="p">)</span>
+<span class="lineno">47</span>       <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">color</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span> <span class="p">})</span>
+<span class="lineno">48</span>       <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;#222&quot;</span><span class="p">)</span>
+<span class="lineno">49</span>       <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="s2">&quot;1.5px&quot;</span><span class="p">)</span>
+<span class="lineno">50</span> 
+<span class="lineno">51</span>   <span class="nx">nodeg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
+<span class="lineno">52</span>       <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;font&quot;</span><span class="p">,</span> <span class="s2">&quot;16px sans-serif&quot;</span><span class="p">)</span>
+<span class="lineno">53</span>       <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;#000&quot;</span><span class="p">)</span>
+<span class="lineno">54</span>       <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;dx&quot;</span><span class="p">,</span> <span class="s2">&quot;-0.25em&quot;</span><span class="p">)</span>
+<span class="lineno">55</span>       <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;dy&quot;</span><span class="p">,</span> <span class="s2">&quot;0.35em&quot;</span><span class="p">)</span>
+<span class="lineno">56</span>       <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">id</span><span class="p">.</span><span class="nx">i</span><span class="p">;</span> <span class="p">});</span>
+<span class="lineno">57</span> 
+<span class="lineno">58</span>   <span class="kd">function</span> <span class="nx">tick</span><span class="p">()</span> <span class="p">{</span>
+<span class="lineno">59</span>     <span class="nx">link</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span> <span class="p">})</span>
+<span class="lineno">60</span>         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y1&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span> <span class="p">})</span>
+<span class="lineno">61</span>         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span> <span class="p">})</span>
+<span class="lineno">62</span>         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y2&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span> <span class="p">});</span>
+<span class="lineno">63</span> 
+<span class="lineno">64</span>     <span class="c1">// nodeg.attr(&quot;cx&quot;, function(d) { return d.x; })</span>
+<span class="lineno">65</span>         <span class="c1">// .attr(&quot;cy&quot;, function(d) { return d.y; });</span>
+<span class="lineno">66</span>     <span class="nx">nodeg</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">&quot;translate(&quot;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">;</span> <span class="p">});</span>
+<span class="lineno">67</span>   <span class="p">}</span>
+<span class="lineno">68</span> 
+<span class="lineno">69</span>   <span class="kd">function</span> <span class="nx">dblclick</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">70</span>     <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">classed</span><span class="p">(</span><span class="s2">&quot;fixed&quot;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">fixed</span> <span class="o">=</span> <span class="kc">false</span><span class="p">);</span>
+<span class="lineno">71</span>   <span class="p">}</span>
+<span class="lineno">72</span> 
+<span class="lineno">73</span>   <span class="kd">function</span> <span class="nx">dragstart</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">74</span>     <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">classed</span><span class="p">(</span><span class="s2">&quot;fixed&quot;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">fixed</span> <span class="o">=</span> <span class="kc">true</span><span class="p">);</span>
+<span class="lineno">75</span>   <span class="p">}</span>
+<span class="lineno">76</span> <span class="p">});</span></code></pre></div>
+
+<script src="/assets/fdg/graph-46602e757ae58ea5e5c4e1b36fb0bd3f.js"></script>
+
+
+  <footer><hr></footer>
+  
+</article>
+
+    </main>
+
   </body>
 </html>
