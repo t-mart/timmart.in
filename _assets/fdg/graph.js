@@ -11,7 +11,9 @@ var svg = d3.select("#svg").append("svg")
     .attr("width", width)
     .attr("height", height);
 
-d3.json("articles/fdg/graphdata.json", function(error, graph) {
+var dataPath = d3.select("#svg").attr("data-json-path");
+
+d3.json(dataPath, function(error, graph) {
 
   var force = d3.layout.force()
       .size([width, height])

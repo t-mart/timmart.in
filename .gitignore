@@ -1,7 +1,4 @@
-*.pyc
-__pycache__
-node_modules
-output
+_site
+.sass-cache
 venv
-cache
-ontent/html/*.html
+node_modules
