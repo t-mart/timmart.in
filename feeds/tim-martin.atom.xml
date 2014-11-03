@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Tim Martin</title><link href="http://timmart.in/" rel="alternate"></link><link href="http://timmart.in/feeds/tim-martin.atom.xml" rel="self"></link><id>http://timmart.in/</id><updated>2014-11-02T00:00:00-04:00</updated><entry><title>Haml Test</title><link href="http://timmart.in/this-should-be-my-slug.html" rel="alternate"></link><updated>2014-11-02T00:00:00-04:00</updated><author><name>Tim Martin</name></author><id>tag:timmart.in,2014-11-02:this-should-be-my-slug.html</id><summary type="html">
-    &lt;p&gt;Okay, so I shouldn't put a heading here at the beginnging of the body because pelican is going to parse the title from the &lt;em&gt;head&lt;/em&gt; tag; I then use the title to create an H1 in front of this body content.&lt;/p&gt;
-    &lt;p&gt;And here's another paragraph.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Tim Martin</title><link href="http://timmart.in/" rel="alternate"></link><link href="http://timmart.in/feeds/tim-martin.atom.xml" rel="self"></link><id>http://timmart.in/</id><updated>2014-11-03T00:00:00-05:00</updated><entry><title>Force Directed Graphs</title><link href="http://timmart.in/fdg.html" rel="alternate"></link><updated>2014-11-03T00:00:00-05:00</updated><author><name>Tim Martin</name></author><id>tag:timmart.in,2014-11-03:fdg.html</id><summary type="html">
+    &lt;div id="svg"&gt;&lt;/div&gt;
+    &lt;p&gt;The methodology used to create this network graph’s layout is called “force-directed placement” (FDP). The basic idea is of two physical forces existing in the viewing area:&lt;/p&gt;
+    &lt;ol&gt;
+      &lt;li&gt;the repulsive force of nodes on other nodes and&lt;/li&gt;
+      &lt;li&gt;the attractive force of links that bring nodes together.&lt;/li&gt;
+    &lt;/ol&gt;
+    &lt;p&gt;The algorithm starts by placing nodes randomly across the viewing area and iterates until an equilibrium of these two forces is found, halting the algorithm.&lt;/p&gt;
     &lt;section&gt;
-      &lt;h2&gt;This is a section&lt;/h2&gt;
-      &lt;p&gt;And the text for that section! Voila!&lt;/p&gt;
-      &lt;code data-gist-file="package.json" data-gist-id="1b9deaa419f61bfe6a77"&gt;&lt;/code&gt;
+      &lt;h2&gt;Parameters&lt;/h2&gt;
+      &lt;p&gt;The two forces are parameters to the layout.  I chose for the links to have a constant attraction, but gave the nodes a repulsion inversely proportional to the square of the node’s connectivity; this is why the highly connected nodes 1, 5 cluster towards each other in the center, while the least connected nodes 9, 4 are at the edges of the viewing area. This tends to give the layout a radial interpretation, where node connectivity is negatively correlated with radius from the center. This effect is, however, non-deterministic due to the random initial states inherent to FDPs and these parameters may not provide this effect to all datasets.&lt;/p&gt;
     &lt;/section&gt;
-    &lt;p&gt;Very nice.&lt;/p&gt;
-    &lt;img src="https://www.gnu.org/graphics/gplv3-127x51.png"&gt;
+    &lt;section&gt;
+      &lt;h2&gt;Node Size&lt;/h2&gt;
+      &lt;p&gt;I also encoded connectivity with node size: highly connected nodes have greater radii and vice versa. This additional encoding of connectivity reinforces its meaning, but also provides a fallback in case a particular FDP run produces a placement that contradicts my intentions from the previous paragraph.&lt;/p&gt;
+    &lt;/section&gt;
+    &lt;section&gt;
+      &lt;h2&gt;Color&lt;/h2&gt;
+      &lt;p&gt;The colormap used for nodes was chosen with the assumption that nodes are not part of a continuity and are more categorical in nature. Therefore, the colors were intended to be discriminable. I used D3.js’s &lt;code&gt;category10()&lt;/code&gt; color scale.&lt;/p&gt;
+    &lt;/section&gt;
+    &lt;section&gt;
+      &lt;h2&gt;Motivation&lt;/h2&gt;
+      &lt;p&gt;While my first reaction to the data was to make a planar graph, I thought it more interesting and organic to use an FDP. Human adjustment to particular nodes and links can place undue emphasis on information. Although the randomness of FDPs may not be much better, at least it gives consistent treatment to the whole system.&lt;/p&gt;
+    &lt;/section&gt;
+    &lt;code data-gist-file="graph.js" data-gist-id="1b9deaa419f61bfe6a77"&gt;&lt;/code&gt;
+    &lt;script charset="utf-8" src="http://d3js.org/d3.v3.min.js"&gt;&lt;/script&gt;
+    &lt;script charset="utf-8" src="articles/fdg/graph.js"&gt;&lt;/script&gt;
+  </summary></entry><entry><title>Hello World!</title><link href="http://timmart.in/hello-world.html" rel="alternate"></link><updated>2014-11-02T00:00:00-04:00</updated><author><name>Tim Martin</name></author><id>tag:timmart.in,2014-11-02:hello-world.html</id><summary type="html">
+    &lt;p&gt;Welcome to my blog.&lt;/p&gt;
   </summary></entry></feed>

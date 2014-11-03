@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Force Directed Graphs - Tim Martin
+</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Fira Sans">
+    <link rel="stylesheet" href="http://timmart.in/theme/css/main.css">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/gist-embed/1.9/gist-embed.min.js"></script>
+  </head>
+
+  <body>
+  <aside>
+<a href="http://timmart.in/"><img src="http://www.gravatar.com/avatar/d700efe4c5d1b2f72c74d43d9f3e296f" id="portrait"></a>
+<h1><a href="http://timmart.in/">Tim Martin</a></h1>
+<p>I write <a href="https://github.com/t-mart">code</a> and talk about <a href="https://twitter.com/tmmrtn">tech</a>. You can read more about me <a href="http://timmart.in/extra/resume.pdf">here</a>.</p>  </aside>
+  <main>
+<article>
+  <h1>Force Directed Graphs</h1>
+  <time datetime="2014-11-03T00:00:00">Mon 03 November 2014</time>
+  
+    <div id="svg"></div>
+    <p>The methodology used to create this network graph’s layout is called “force-directed placement” (FDP). The basic idea is of two physical forces existing in the viewing area:</p>
+    <ol>
+      <li>the repulsive force of nodes on other nodes and</li>
+      <li>the attractive force of links that bring nodes together.</li>
+    </ol>
+    <p>The algorithm starts by placing nodes randomly across the viewing area and iterates until an equilibrium of these two forces is found, halting the algorithm.</p>
+    <section>
+      <h2>Parameters</h2>
+      <p>The two forces are parameters to the layout.  I chose for the links to have a constant attraction, but gave the nodes a repulsion inversely proportional to the square of the node’s connectivity; this is why the highly connected nodes 1, 5 cluster towards each other in the center, while the least connected nodes 9, 4 are at the edges of the viewing area. This tends to give the layout a radial interpretation, where node connectivity is negatively correlated with radius from the center. This effect is, however, non-deterministic due to the random initial states inherent to FDPs and these parameters may not provide this effect to all datasets.</p>
+    </section>
+    <section>
+      <h2>Node Size</h2>
+      <p>I also encoded connectivity with node size: highly connected nodes have greater radii and vice versa. This additional encoding of connectivity reinforces its meaning, but also provides a fallback in case a particular FDP run produces a placement that contradicts my intentions from the previous paragraph.</p>
+    </section>
+    <section>
+      <h2>Color</h2>
+      <p>The colormap used for nodes was chosen with the assumption that nodes are not part of a continuity and are more categorical in nature. Therefore, the colors were intended to be discriminable. I used D3.js’s <code>category10()</code> color scale.</p>
+    </section>
+    <section>
+      <h2>Motivation</h2>
+      <p>While my first reaction to the data was to make a planar graph, I thought it more interesting and organic to use an FDP. Human adjustment to particular nodes and links can place undue emphasis on information. Although the randomness of FDPs may not be much better, at least it gives consistent treatment to the whole system.</p>
+    </section>
+    <code data-gist-file="graph.js" data-gist-id="1b9deaa419f61bfe6a77"></code>
+    <script charset="utf-8" src="http://d3js.org/d3.v3.min.js"></script>
+    <script charset="utf-8" src="articles/fdg/graph.js"></script>
+  
+  <footer><hr></footer>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+var disqus_shortname = 'timmartin'; // required: replace example with your forum shortname
+
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></article>
+  </main>
+  </body>
+</html>

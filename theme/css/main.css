@@ -54,6 +54,13 @@ article time {
   font-style: italic;
 }
 
+article footer {
+  width: 20%;
+  text-align: center;
+  margin: 0 auto;
+  padding: 2em;
+}
+
 #portrait {
   width: 100px;
   border-radius: 10%;
