@@ -4,7 +4,7 @@
     <title>Haml Test - Tim Martin
 </title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Inconsolata|Fira Sans">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Fira Sans">
     <link rel="stylesheet" href="http://timmart.in/theme/css/main.css">
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/gist-embed/1.9/gist-embed.min.js"></script>
@@ -12,13 +12,9 @@
 
   <body>
   <aside>
-<header>
-  <h1><a href="http://timmart.in/">Tim Martin</a></h1>
-  <h2>Is it day or night right now?</h2>
-</header>
-<footer>
-  <p>You can see how the sausage is made here.</p>
-</footer>  </aside>
+<a href="http://timmart.in/"><img src="http://www.gravatar.com/avatar/d700efe4c5d1b2f72c74d43d9f3e296f" id="portrait"></a>
+<h1><a href="http://timmart.in/">Tim Martin</a></h1>
+<p>I write <a href="https://github.com/t-mart">code</a> and talk about <a href="https://twitter.com/tmmrtn">tech</a>. You can read more about me <a href="http://timmart.in/docs/resume.pdf">here</a>.</p>  </aside>
   <main>
 <article>
   <h1>Haml Test</h1>
@@ -34,7 +30,17 @@
     <p>Very nice.</p>
     <img src="https://www.gnu.org/graphics/gplv3-127x51.png">
   
-</article>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+var disqus_shortname = 'timmartin'; // required: replace example with your forum shortname
+
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></article>
   </main>
   </body>
 </html>
