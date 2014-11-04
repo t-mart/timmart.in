@@ -1,3 +1,7 @@
 .pie_arc {
   font-size: 0.75em;
 }
+
+#svg {
+  text-align: center;
+}
