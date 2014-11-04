@@ -1,0 +1,20 @@
+---
+layout: post
+title:  "Whiskey Flavor Donuts"
+date:   2014-11-04 12:06:08
+d3: true
+---
+
+{% contentfor customhead %}
+<link rel="stylesheet" href="{% asset_path 'whiskey/whiskey.css' %}">
+{% endcontentfor %}
+
+[NESSIE](https://www.mathstat.strath.ac.uk/outreach/nessie/nessie_whisky.html)
+provided a dataset of "86 malt whiskies are scored between 0-4 for 12
+different taste categories including sweetness, smoky, nutty etc." Here they
+are, visualized with [D3.js](http://d3js.org).
+[Code]({% asset_path 'whiskey/whiskey_pies.js' %}).
+
+<div id="svg" data-json-path="{% asset_path 'whiskey/whiskies.csv' %}"></div>
+
+{% javascript 'whiskey/whiskey_pies.js' %}
