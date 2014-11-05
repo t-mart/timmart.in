@@ -14,20 +14,16 @@ The methodology used to create this network graph’s layout is called “force-
 
 The algorithm starts by placing nodes randomly across the viewing area and iterates until an equilibrium of these two forces is found, halting the algorithm.
 
-Parameters
-==========
+### Parameters ###
 The two forces are parameters to the layout.  I chose for the links to have a constant attraction, but gave the nodes a repulsion inversely proportional to the square of the node’s connectivity; this is why the highly connected nodes 1, 5 cluster towards each other in the center, while the least connected nodes 9, 4 are at the edges of the viewing area. This tends to give the layout a radial interpretation, where node connectivity is negatively correlated with radius from the center. This effect is, however, non-deterministic due to the random initial states inherent to FDPs and these parameters may not provide this effect to all datasets.
 
-Node Size
-=========
+### Node Size ###
 I also encoded connectivity with node size: highly connected nodes have greater radii and vice versa. This additional encoding of connectivity reinforces its meaning, but also provides a fallback in case a particular FDP run produces a placement that contradicts my intentions from the previous paragraph.
 
-Color
-=====
+### Color ###
 The colormap used for nodes was chosen with the assumption that nodes are not part of a continuity and are more categorical in nature. Therefore, the colors were intended to be discriminable. I used D3.js’s <code>category10()</code> color scale.
 
-Motivation
-==========
+### Motivation ###
 While my first reaction to the data was to make a planar graph, I thought it more interesting and organic to use an FDP. Human adjustment to particular nodes and links can place undue emphasis on information. Although the randomness of FDPs may not be much better, at least it gives consistent treatment to the whole system.
 
 {% highlight javascript linenos %}
