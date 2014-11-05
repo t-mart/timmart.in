@@ -38,7 +38,7 @@
 
     <main>
     <article>
-  <h1>Force Directed Graphs</h1>
+  <h2>Force Directed Graphs</h2>
   <time datetime="2014-11-03T07:06:08-05:00">Nov 3, 2014</time>
   <div id="svg" data-json-path="/assets/fdg/graphdata-a31696579da471eb3aeb1b233a5e2549.json"></div>
 
@@ -51,16 +51,16 @@
 
 <p>The algorithm starts by placing nodes randomly across the viewing area and iterates until an equilibrium of these two forces is found, halting the algorithm.</p>
 
-<h1 id="parameters">Parameters</h1>
+<h3 id="parameters">Parameters</h3>
 <p>The two forces are parameters to the layout.  I chose for the links to have a constant attraction, but gave the nodes a repulsion inversely proportional to the square of the node’s connectivity; this is why the highly connected nodes 1, 5 cluster towards each other in the center, while the least connected nodes 9, 4 are at the edges of the viewing area. This tends to give the layout a radial interpretation, where node connectivity is negatively correlated with radius from the center. This effect is, however, non-deterministic due to the random initial states inherent to FDPs and these parameters may not provide this effect to all datasets.</p>
 
-<h1 id="node-size">Node Size</h1>
+<h3 id="node-size">Node Size</h3>
 <p>I also encoded connectivity with node size: highly connected nodes have greater radii and vice versa. This additional encoding of connectivity reinforces its meaning, but also provides a fallback in case a particular FDP run produces a placement that contradicts my intentions from the previous paragraph.</p>
 
-<h1 id="color">Color</h1>
+<h3 id="color">Color</h3>
 <p>The colormap used for nodes was chosen with the assumption that nodes are not part of a continuity and are more categorical in nature. Therefore, the colors were intended to be discriminable. I used D3.js’s <code>category10()</code> color scale.</p>
 
-<h1 id="motivation">Motivation</h1>
+<h3 id="motivation">Motivation</h3>
 <p>While my first reaction to the data was to make a planar graph, I thought it more interesting and organic to use an FDP. Human adjustment to particular nodes and links can place undue emphasis on information. Although the randomness of FDPs may not be much better, at least it gives consistent treatment to the whole system.</p>
 
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno"> 1</span> <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mi">600</span><span class="p">,</span>

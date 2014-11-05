@@ -6,16 +6,17 @@ h1, h2, h3 {
   font-weight: normal;
 }
 
-h1 {
+h1,
+article h2 {
   text-transform: uppercase;
   font-size: 2em;
 }
 
-h2 {
+article h3 {
   font-size: 1.5em;
 }
 
-h3 {
+article h4 {
   font-size: 1.25em;
 }
 
