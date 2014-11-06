@@ -12,7 +12,7 @@
 
     <link rel="shortcut icon" href="http://www.gravatar.com/avatar/d700efe4c5d1b2f72c74d43d9f3e296f">
 
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Fira+Sans%7CDroid+Serif">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Fira+Sans%7CDroid+Serif%7CSignika+Negative">
 
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/syntax-highlighting.css">
@@ -24,7 +24,7 @@
     
 
     
-<link rel="stylesheet" href="/assets/whiskey/whiskey-513dda991b9738f0f2814428777b5462.css" />
+<link rel="stylesheet" href="/assets/whiskey/whiskey-ac51d9505c1c81c9b2892382d51e64d1.css" />
 
 
 </head>
@@ -44,15 +44,28 @@
   <h2>Whiskey Flavor Donuts</h2>
   <time datetime="2014-11-04T07:06:08-05:00">Nov 4, 2014</time>
   
+<p>I didn’t mean to get your hopes up with that title. I will talk about whiskey donuts today, but not like how you think.</p>
+
 <p><a href="https://www.mathstat.strath.ac.uk/outreach/nessie/nessie_whisky.html">NESSIE</a>
 provided a dataset of “86 malt whiskies are scored between 0-4 for 12
 different taste categories including sweetness, smoky, nutty etc.” Here they
 are, visualized with <a href="http://d3js.org">D3.js</a>.
-<a href="/assets/whiskey/whiskey_pies-4fca66ad050a6f24d5f80df1d8e9354a.js">Code</a>.</p>
+<a href="https://gist.github.com/t-mart/36b8d53fa4f2c95d1dc4">Code</a>.</p>
+
+<p>Each donut represents a whiskey from the distillery shown in bold text in the
+center. They’re listed here alphabetically. (Distilleries often produce more than one; which whiskey this data
+comes from I’m not sure.) Each of the 12 flavors within a whiskey get a equal length arc around
+the donut. The strength of the flavor is encoded with <strong>color</strong> and <strong>area</strong>.</p>
+
+<p>I saw
+<a href="http://wonkviz.tumblr.com/post/72159021235/whiskey-flavor-profiles">another</a>
+viz of this data, but I didn’t think the <a href="http://en.wikipedia.org/wiki/Radar_chart">radar charts</a> used worked very well. My main problem with them is that strong flavors can be masked if between two weak ones. Strong attributes should jump out at you, but unfortunately radar charts present this case as a thin spike will a small area.</p>
+
+<p>Cheers.</p>
 
 <div id="svg" data-json-path="/assets/whiskey/whiskies-73c11c0472038e8bb9764c1d8c26c9b8.csv"></div>
 
-<script src="/assets/whiskey/whiskey_pies-4fca66ad050a6f24d5f80df1d8e9354a.js"></script>
+<script src="/assets/whiskey/whiskey_pies-18a26665054838995a3897e9a1b6575b.js"></script>
 
 
   <footer><hr></footer>

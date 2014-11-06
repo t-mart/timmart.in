@@ -2,6 +2,10 @@
   font-size: 0.75em;
 }
 
+.distillery {
+  font-weight: bold;
+}
+
 #svg {
   text-align: center;
 }

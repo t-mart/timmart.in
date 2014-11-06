@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Cache Busting and HTML Data Attributes</title>
+    <meta name="description" content="I write code and talk about tech here.
+">
+
+    <link rel="shortcut icon" href="http://www.gravatar.com/avatar/d700efe4c5d1b2f72c74d43d9f3e296f">
+
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Fira+Sans%7CDroid+Serif%7CSignika+Negative">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/syntax-highlighting.css">
+    <link rel="canonical" href="http://timmart.in/data-attr.html">
+
+    
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    
+    
+
+    
+
+</head>
+
+
+  <body>
+
+    <aside>
+      <a href="/"><img src="http://www.gravatar.com/avatar/d700efe4c5d1b2f72c74d43d9f3e296f" id="portrait" alt="My picture"></a>
+<h1><a href="/">Tim Martin</a></h1>
+<p>I write <a href="https://github.com/t-mart">code</a> and talk about tech here and on <a href="https://twitter.com/tmmrtn">twitter</a>. Here's my <a href="/assets/resume-91809524734ae670d311673500abd45c.pdf">resume</a>. Email me at <a href="mailto:tim@timmart.in">tim@timmart.in</a>.</p>
+
+    </aside>
+
+    <main>
+    <article>
+  <h2>Cache Busting and HTML Data Attributes</h2>
+  <time datetime="2014-11-05T07:06:08-05:00">Nov 5, 2014</time>
+  <p>I’d heard about <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes">HTML data
+attributes</a>,
+but never really had a use for them. Simply, they allow you to hold arbitrary
+data within your markup.</p>
+
+<p>Honestly, they bugged me: I’d been under the impression that HTML was there to structure
+documents insofar as to render them in browsers. But data attributes aren’t
+used by browsers at all. They’re domain-specific. The programmer prescribes
+their meaning.</p>
+
+<h3 id="my-problem">My problem</h3>
+<p>Well, I think I found one good use case for data attributes. When I was writing my last two
+posts, I had a bit of trouble telling my D3 javascript where my visualization data was. You
+see, when I build this blog, <a href="https://github.com/ixti/jekyll-assets">jekyll-assets</a> performs
+what’s called <em>cache busting</em>. Essentially, cache busting is version control
+for files so that a browser can know whether to use a cached version instead
+of an expensive request for a fresh copy (<a href="http://webassets.readthedocs.org/en/latest/expiring.html">more thorough explanation
+here</a>).</p>
+
+<p>This is sweet, but a consequence of this is that, as I write this blog, <strong>there’s no easy way for me to know the
+path of an asset because the path is determined at build-time</strong>. For example, you
+may see a path like</p>
+
+<p><code>foo.json</code></p>
+
+<p>turn into</p>
+
+<p><code>foo.f110abe5b3cfd324c2e5128eb4733879.json</code></p>
+
+<p>after I build the site.</p>
+
+<h3 id="data-attributes-to-the-rescue">Data attributes to the rescue</h3>
+<p>So, I can’t simply tell D3 to read a certain file because I don’t
+know what it’s path will be. This is when I got creative and decide to put
+that path in a data attribute.</p>
+
+<p>The reason I’m able to do <em>that</em> is because jekyll-assets offers an
+<code>asset_path</code> Liquid tag. This tag will output to the resulting asset
+path! Here’s how I used it in a data attribute.</p>
+
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><code class="language-javascript" data-lang="javascript">1
+2
+3
+4</code></pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">div</span>
+  <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;svg&quot;</span>
+  <span class="nx">data</span><span class="o">-</span><span class="nx">json</span><span class="o">-</span><span class="nx">path</span><span class="o">=</span><span class="s2">&quot;{% asset_path &#39;whiskey/whiskies.csv&#39; %}&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="err">/div&gt;</span>
+</pre></div>
+</td></tr></table>
+
+<p>Now, getting that path with Javascript is easy. I’m using D3’s selectors here:</p>
+
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><code class="language-javascript" data-lang="javascript">1
+2
+3</code></pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">dataPath</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;#svg&quot;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;data-json-path&quot;</span><span class="p">);</span>
+<span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="nx">dataPath</span><span class="p">)</span>
+<span class="p">...</span>
+</pre></div>
+</td></tr></table>
+
+<p>And there, now my D3 knows the right path.</p>
+
+<p>I’ll admit that a one-off data file probably isn’t something that really
+benefits cache busting. Cache busting is useful for files requested
+frequently. However, as far as I can tell, there’s no way to turn
+jekyll-assets off for just one file and I really like the build directory
+structure I’ve got going on already. This is how I settled.</p>
+
+<p>I’m also curious if I could have ran my Javascript through Liquid’s templating
+and just placed the tag there.</p>
+
+  <footer><hr></footer>
+      <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'timmartin'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</article>
+
+    </main>
+
+  </body>
+</html>
