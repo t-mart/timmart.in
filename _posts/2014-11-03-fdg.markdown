@@ -26,7 +26,7 @@ The colormap used for nodes was chosen with the assumption that nodes are not pa
 ### Motivation ###
 While my first reaction to the data was to make a planar graph, I thought it more interesting and organic to use an FDP. Human adjustment to particular nodes and links can place undue emphasis on information. Although the randomness of FDPs may not be much better, at least it gives consistent treatment to the whole system.
 
-{% highlight javascript linenos %}
+{% highlight javascript linenos=table %}
 {% asset 'fdg/graph.js' %}
 {% endhighlight %}
 
