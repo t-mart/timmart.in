@@ -17,7 +17,7 @@ d3.csv(dataPath)
 })
 .get(function(error, whiskies) {
 
-  var pie_side = 200;
+  var pie_side = 190;
   var pie_radius = pie_side / 2;
 
   var pie_radius_scale = d3.scale.linear()

@@ -9,11 +9,24 @@ d3: true
 <link rel="stylesheet" href="{% asset_path 'whiskey/whiskey.css' %}">
 {% endcontentfor %}
 
+I didn't mean to get your hopes up with that title. I will talk about whiskey donuts today, but not like how you think.
+
 [NESSIE](https://www.mathstat.strath.ac.uk/outreach/nessie/nessie_whisky.html)
 provided a dataset of "86 malt whiskies are scored between 0-4 for 12
 different taste categories including sweetness, smoky, nutty etc." Here they
 are, visualized with [D3.js](http://d3js.org).
-[Code]({% asset_path 'whiskey/whiskey_pies.js' %}).
+[Code](https://gist.github.com/t-mart/36b8d53fa4f2c95d1dc4).
+
+Each donut represents a whiskey from the distillery shown in bold text in the
+center. They're listed here alphabetically. (Distilleries often produce more than one; which whiskey this data
+comes from I'm not sure.) Each of the 12 flavors within a whiskey get a equal length arc around
+the donut. The strength of the flavor is encoded with **color** and **area**.
+
+I saw
+[another](http://wonkviz.tumblr.com/post/72159021235/whiskey-flavor-profiles)
+viz of this data, but I didn't think the [radar charts](http://en.wikipedia.org/wiki/Radar_chart) used worked very well. My main problem with them is that strong flavors can be masked if between two weak ones. Strong attributes should jump out at you, but unfortunately radar charts present this case as a thin spike will a small area.
+
+Cheers.
 
 <div id="svg" data-json-path="{% asset_path 'whiskey/whiskies.csv' %}"></div>
 
