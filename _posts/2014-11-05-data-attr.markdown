@@ -1,0 +1,73 @@
+---
+layout: post
+title:  "Cache Busting and HTML Data Attributes"
+date:   2014-11-05 12:06:08
+d3: true
+---
+
+I'd heard about [HTML data
+attributes](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes),
+but never really had a use for them. Simply, they allow you to hold arbitrary
+data within your markup.
+
+Honestly, they bugged me: I'd been under the impression that HTML was there to structure
+documents insofar as to render them in browsers. But data attributes aren't
+used by browsers at all. They're domain-specific. The programmer prescribes
+their meaning.
+
+### My problem ###
+Well, I think I found one good use case for data attributes. When I was writing my last two
+posts, I had a bit of trouble telling my D3 javascript where my visualization data was. You
+see, when I build this blog, [jekyll-assets](https://github.com/ixti/jekyll-assets) performs
+what's called *cache busting*. Essentially, cache busting is version control
+for files so that a browser can know whether to use a cached version instead
+of an expensive request for a fresh copy ([more thorough explanation
+here](http://webassets.readthedocs.org/en/latest/expiring.html)).
+
+This is sweet, but a consequence of this is that, as I write this blog, **there's no easy way for me to know the
+path of an asset because the path is determined at build-time**. For example, you
+may see a path like
+
+<code>foo.json</code>
+
+turn into
+
+<code>foo.f110abe5b3cfd324c2e5128eb4733879.json</code>
+
+after I build the site.
+
+### Data attributes to the rescue ###
+So, I can't simply tell D3 to read a certain file because I don't
+know what it's path will be. This is when I got creative and decide to put
+that path in a data attribute.
+
+The reason I'm able to do *that* is because jekyll-assets offers an
+<code>asset_path</code> Liquid tag. This tag will output to the resulting asset
+path! Here's how I used it in a data attribute.
+
+{% highlight javascript linenos=table %}
+{% raw %}
+<div
+  id="svg"
+  data-json-path="{% asset_path 'whiskey/whiskies.csv' %}">
+</div>
+{% endraw %}
+{% endhighlight %}
+
+Now, getting that path with Javascript is easy. I'm using D3's selectors here:
+{% highlight javascript linenos=table %}
+var dataPath = d3.select("#svg").attr("data-json-path");
+d3.csv(dataPath)
+...
+{% endhighlight %}
+
+And there, now my D3 knows the right path.
+
+I'll admit that a one-off data file probably isn't something that really
+benefits cache busting. Cache busting is useful for files requested
+frequently. However, as far as I can tell, there's no way to turn
+jekyll-assets off for just one file and I really like the build directory
+structure I've got going on already. This is how I settled.
+
+I'm also curious if I could have ran my Javascript through Liquid's templating
+and just placed the tag there.

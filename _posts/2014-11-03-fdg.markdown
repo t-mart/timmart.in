@@ -7,7 +7,7 @@ d3: true
 
 <div id="svg" data-json-path="{% asset_path 'fdg/graphdata.json' %}"></div>
 
-The methodology used to create this network graph’s layout is called “force-directed placement” (FDP). The basic idea is of two physical forces existing in the viewing area:
+The methodology used to create this network graph’s layout is called [“force-directed placement” (FDP)](http://en.wikipedia.org/wiki/Force-directed_graph_drawing). The basic idea is of two physical forces existing in the viewing area:
 
   1. the repulsive force of nodes on other nodes and
   2. the attractive force of links that bring nodes together.
@@ -21,13 +21,19 @@ The two forces are parameters to the layout.  I chose for the links to have a co
 I also encoded connectivity with node size: highly connected nodes have greater radii and vice versa. This additional encoding of connectivity reinforces its meaning, but also provides a fallback in case a particular FDP run produces a placement that contradicts my intentions from the previous paragraph.
 
 ### Color ###
-The colormap used for nodes was chosen with the assumption that nodes are not part of a continuity and are more categorical in nature. Therefore, the colors were intended to be discriminable. I used D3.js’s <code>category10()</code> color scale.
+The colormap used for nodes was chosen with the assumption that nodes are not part of a continuity and are more categorical in nature. Therefore, the colors were intended to be discriminable. I used [D3.js’s <code>category10()</code>](https://github.com/mbostock/d3/wiki/Ordinal-Scales#category10) color scale.
 
 ### Motivation ###
 While my first reaction to the data was to make a planar graph, I thought it more interesting and organic to use an FDP. Human adjustment to particular nodes and links can place undue emphasis on information. Although the randomness of FDPs may not be much better, at least it gives consistent treatment to the whole system.
 
+### Graph Code ###
 {% highlight javascript linenos=table %}
 {% asset 'fdg/graph.js' %}
+{% endhighlight %}
+
+### Graph Data ###
+{% highlight javascript linenos=table %}
+{% asset 'fdg/graphdata.json' %}
 {% endhighlight %}
 
 {% javascript 'fdg/graph.js' %}
