@@ -3,3 +3,5 @@ _site
 venv
 node_modules
 __pycache__
+.bundle
+vendor

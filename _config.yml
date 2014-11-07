@@ -9,7 +9,7 @@ twitter_username: tmmrtn
 github_username:  t-mart
 disqus_shortname:  timmartin
 
-exclude: [venv, Gemfile, Gemfile.lock, Gruntfile.js, package.json, README, requirements.txt]
+exclude: [venv, Gemfile, Gemfile.lock, Gruntfile.js, package.json, README, requirements.txt, vendor]
 
 markdown: kramdown
 
