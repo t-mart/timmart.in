@@ -34,7 +34,7 @@ Wrong.
 I tricked you a little bit here because I didn't tell you about CloudFlare's
 identity verification process: There is none for the certificate I use here.
 That means there's no provable link between this site and me, the breathing
-human being Tim Martin with a reputation to uphold Hence, this compromises the
+human being Tim Martin with a reputation to uphold. Hence, this compromises the
 aforementioned **authenticity&#42;**.
 
 As of right now, the only way to prove authenticity is for a [Certificate
@@ -53,8 +53,9 @@ acted upon. You should do some basic Wikipedia-ing on
 [matter](http://en.wikipedia.org/wiki/Extended_Validation_Certificate) if
 you're unfamiliar.)
 
-Anyway, you can check for yourself that my identity has not been verified.
-Take a look at this screenshot of Chrome's Certificate dialog:
+Anyway, you can check for yourself that this certificate has nothing really to
+do with me, and that my identity has not been verified. Take a look at this
+screenshot of Chrome's Certificate dialog:
 
 <figure><img src="{% asset_path 'is-this-my-site/cert_dialog.png' %}" alt="Chrome's Certificate dialog">
 <figcaption>See that <code>sni74477.cloudflaressl.com</code>? That's not
