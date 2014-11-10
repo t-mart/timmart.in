@@ -21,10 +21,14 @@ friend quickly told me this was a problem: Without
 place, the content on my site (including a PGP key) is not guaranteed to
 have:
 
-* **Confidentiality**: secrecy of the content from other parties, like ISPs, employers, etc.
-* **Message Integrity**: assurance the content is intact and has not been modified.
-* **Authenticity&#42;**:  confirmation that the content was delivered from me/on my
-  behalf.
+<dl>
+  <dt>Confidentiality</dt>
+  <dd>secrecy of the content from other parties, like ISPs, employers, etc.</dd>
+  <dt>Message Integrity</dt>
+  <dd>the content is intact and has not been modified.</dd>
+  <dt>Authenticity&#42;</dt>
+  <dd>the content was delivered from me/on my behalf.</dd>
+</dl>
 
 But I have all that now with a certificate in place. So I can publish my
 PGP key and users can rest assured?

@@ -152,6 +152,24 @@ article figure * {
   max-width: 100%;
 }
 
+article dl {
+  padding-left: 40px;
+}
+
+article dl dt {
+  font-weight: bold;
+  display: list-item;
+}
+
+article dl dt:after {
+  font-weight: normal;
+  content: ": ";
+}
+
+article dl dd {
+  /* display: inline; */
+}
+
 @media (max-width: 800px) {
   body > aside {
     width: 100%;
