@@ -148,6 +148,10 @@ article figure figcaption {
   font-style: italic;
 }
 
+article figure * {
+  max-width: 100%;
+}
+
 @media (max-width: 800px) {
   body > aside {
     width: 100%;

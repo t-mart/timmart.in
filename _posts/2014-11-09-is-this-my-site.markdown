@@ -61,3 +61,6 @@ screenshot of Chrome's Certificate dialog:
 <figcaption>See that <code>sni74477.cloudflaressl.com</code>? That's not
 me.</figcaption>
 </figure>
+
+So, yes, you have confidentiality, you have message integrity, but the only
+thing you know about authenticity is that this content comes from CloudFlare.
