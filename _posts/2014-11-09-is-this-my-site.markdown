@@ -43,7 +43,7 @@ identity check, the details of which are (simply) guidelined by the CA/Browser F
 a document like
 [this](https://cabforum.org/wp-content/uploads/EV-V1_5_2Libre.pdf). Further,
 this check is only performed on applications for a different class of
-certificates known as Extended Validation Certificates (which generally cost
+certificates known as *Extended Validation Certificates* (which generally cost
 considerably more), and this certificate is not one of them.
 
 (There are a lot of theoretical flaws in the CA scheme that accompany
