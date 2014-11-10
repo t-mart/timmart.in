@@ -130,12 +130,22 @@ a:hover {
   padding: 0 10px;
 }
 
-article p code {
+article p code,
+article figure figcaption code {
   border: 1px solid #e3e3e3;
   background-color: #fdf6e3;
   padding: 1px 3px;
   color: #586e75;
   white-space: nowrap;
+}
+
+article figure {
+  text-align: center;
+}
+
+article figure figcaption {
+  font-size: 0.75em;
+  font-style: italic;
 }
 
 @media (max-width: 800px) {

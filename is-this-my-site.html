@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Is this my site?</title>
+    <meta name="description" content="I write code and talk about tech here.
+">
+
+    <link rel="shortcut icon" href="https://secure.gravatar.com/avatar/d700efe4c5d1b2f72c74d43d9f3e296f">
+
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/syntax-highlighting.css">
+    <link rel="canonical" href="http://timmart.in/is-this-my-site.html">
+
+    
+    
+
+    
+
+</head>
+
+
+  <body>
+
+    <aside>
+      <a href="/"><img src="https://secure.gravatar.com/avatar/d700efe4c5d1b2f72c74d43d9f3e296f" id="portrait" alt="My picture"></a>
+<h1><a href="/">Tim Martin</a></h1>
+<p>I write <a href="https://github.com/t-mart">code</a> and talk about tech here and on <a href="https://twitter.com/tmmrtn">twitter</a>. Here's my <a href="/assets/resume-91809524734ae670d311673500abd45c.pdf">resume</a>. Email me at <a href="mailto:tim@timmart.in">tim@timmart.in</a>.</p>
+
+    </aside>
+
+    <main>
+    <article>
+  <h2>Is this my site?</h2>
+  <time datetime="2014-11-09T07:06:08-05:00">Nov 9, 2014</time>
+  <p>In reading <a href="https://alexgaynor.net/2014/oct/06/http-considered-unethical/">Alex Gaynor’s post prodding for more
+HTTPS</a>, I was
+ecstatic to learn I could start serving my site with a free certificate from
+<a href="https://www.cloudflare.com/ssl">CloudFlare</a>. <em>I’ve set this up already;
+be sure to <a href="https://timmart.in">check it out</a>.</em></p>
+
+<p>Not only was I interested in the details of implementing a certificate on my
+site (however, CloudFlare abstracts that away pretty magically), but I
+also had been wanting to publish my PGP key in case anyone wanted to talk
+about super secret stuff. I jest, but I think it’s kinda cool.</p>
+
+<p>A while ago, I had my PGP key published on an unsecured site of mine. A
+friend quickly told me this was a problem: Without
+<a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">TLS</a> in
+place, the content on my site (including a PGP key) is not guaranteed to
+have:</p>
+
+<ul>
+  <li><strong>Confidentiality</strong>: secrecy of the content from other parties, like ISPs, employers, etc.</li>
+  <li><strong>Message Integrity</strong>: assurance the content is intact and has not been modified.</li>
+  <li><strong>Authenticity*</strong>:  confirmation that the content was delivered from me/on my
+behalf.</li>
+</ul>
+
+<p>But I have all that now with a certificate in place. So I can publish my
+PGP key and users can rest assured?</p>
+
+<p>Wrong.</p>
+
+<p>I tricked you a little bit here because I didn’t tell you about CloudFlare’s
+identity verification process: There is none for the certificate I use here.
+That means there’s no provable link between this site and me, the breathing
+human being Tim Martin with a reputation to uphold Hence, this compromises the
+aforementioned <strong>authenticity*</strong>.</p>
+
+<p>As of right now, the only way to prove authenticity is for a <a href="http://en.wikipedia.org/wiki/Certificate_authority">Certificate
+Authority</a> to perform an
+identity check, the details of which are (simply) guidelined by the CA/Browser Forum in
+a document like
+<a href="https://cabforum.org/wp-content/uploads/EV-V1_5_2Libre.pdf">this</a>. Further,
+this check is only performed on applications for a different class of
+certificates known as Extended Validation Certificates (which generally cost
+considerably more), and this certificate is not one of them.</p>
+
+<p>(There are a lot of theoretical flaws in the CA scheme that accompany
+practically any notion of trust on the web. Some of these flaws have been
+acted upon. You should do some basic Wikipedia-ing on
+<a href="http://en.wikipedia.org/wiki/X.509">the</a>
+<a href="http://en.wikipedia.org/wiki/Extended_Validation_Certificate">matter</a> if
+you’re unfamiliar.)</p>
+
+<p>Anyway, you can check for yourself that my identity has not been verified.
+Take a look at this screenshot of Chrome’s Certificate dialog:</p>
+
+<figure><img src="/assets/is-this-my-site/cert_dialog-0f058b107e9291970a4f2906f50a1489.png" alt="Chrome's Certificate dialog" />
+<figcaption>See that <code>sni74477.cloudflaressl.com</code>? That's not
+me.</figcaption>
+</figure>
+
+  <footer><hr></footer>
+      <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'timmartin'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</article>
+
+    </main>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-34180881-1', 'auto');
+  ga('require', 'displayfeatures');
+  ga('send', 'pageview');
+
+</script>
+
+
+  </body>
+</html>

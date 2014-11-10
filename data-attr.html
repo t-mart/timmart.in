@@ -60,17 +60,12 @@ for files so that a browser can know whether to use a cached version instead
 of an expensive request for a fresh copy (<a href="http://webassets.readthedocs.org/en/latest/expiring.html">more thorough explanation
 here</a>).</p>
 
-<p>This is sweet, but a consequence of this is that, as I write this blog, <strong>there’s no easy way for me to know the
-path of an asset because the path is determined at build-time</strong>. For example, you
-may see a path like</p>
-
-<p><code>foo.json</code></p>
-
-<p>turn into</p>
-
-<p><code>foo.f110abe5b3cfd324c2e5128eb4733879.json</code></p>
-
-<p>after I build the site.</p>
+<p>This is sweet, but a consequence of this is that, as I write this blog,
+<strong>there’s no easy way for me to know the path of an asset because the path is
+determined at build-time</strong>. For example, you may see a path like
+<code>foo.json</code> turn into
+<code>foo.f110abe5b3cfd324c2e5128eb4733879.json</code> after I build the
+site.</p>
 
 <h3 id="data-attributes-to-the-rescue">Data attributes to the rescue</h3>
 <p>So, I can’t simply tell D3 to read a certain file because I don’t
