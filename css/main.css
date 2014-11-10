@@ -6,6 +6,7 @@
 
 html {
   font-family: 'Georgia', serif;
+  font-size: 1.20em;
 }
 
 h1, h2, h3, h4 {
@@ -17,15 +18,19 @@ h1, h2, h3, h4 {
 h1,
 main h2 {
   text-transform: uppercase;
-  font-size: 2em;
+  font-size: 2.5em;
+}
+
+main h2 {
+  margin-top: 0;
 }
 
 main h3 {
-  font-size: 1.5em;
+  font-size: 2.0em;
 }
 
 main h4 {
-  font-size: 1.25em;
+  font-size: 1.5em;
 }
 
 body {
@@ -83,7 +88,8 @@ article footer {
 }
 
 #portrait {
-  width: 100px;
+  /* width: 100px; */
+  width: 50%;
   border-radius: 10%;
   box-shadow: 0 0 0 2px #1090c2;
 }
@@ -124,12 +130,22 @@ a:hover {
   padding: 0 10px;
 }
 
-article p code {
+article p code,
+article figure figcaption code {
   border: 1px solid #e3e3e3;
   background-color: #fdf6e3;
   padding: 1px 3px;
   color: #586e75;
   white-space: nowrap;
+}
+
+article figure {
+  text-align: center;
+}
+
+article figure figcaption {
+  font-size: 0.75em;
+  font-style: italic;
 }
 
 @media (max-width: 800px) {
