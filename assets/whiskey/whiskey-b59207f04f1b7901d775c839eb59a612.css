@@ -1,0 +1,22 @@
+.label {
+  text-anchor: middle;
+}
+
+.pie_arc:hover {
+  stroke: black;
+  stroke-opacity: 0.2;
+}
+
+.label.distillery {
+  font-weight: bold;
+}
+
+.label.flavor {
+  font-size: 0.66em;
+  stroke: none;
+}
+
+#svg {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
