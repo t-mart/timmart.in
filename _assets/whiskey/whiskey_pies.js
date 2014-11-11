@@ -28,9 +28,9 @@ d3.csv(dataPath)
     .domain([0, 4])
     .range(["rgb(255,255,255)","rgb(218,165,32)"]);
 
-  var flavor_color = d3.scale.linear()
+  var flavor_opacity = d3.scale.linear()
     .domain([0, 4])
-    .range(["white","black"]);
+    .range([0.0, 1.0]);
 
   var pie_arc = d3.svg.arc()
     .outerRadius(function(d,i) {
@@ -65,18 +65,30 @@ d3.csv(dataPath)
       .attr("d", pie_arc)
       .style("fill", function(d) { return arc_color(d.data.value); });
 
-    pie_arc_g.append("text")
-    .attr("class", "flavor_name")
+    function onlyIfPresent(d) {
+      if (d.data.value > 0) {
+        return d.data.key;
+      }
+      return "";
+    }
+
+    var flavorLabels = pie_arc_g.append("text")
+    .attr("class", "label flavor")
     .attr("transform", function(d) { return "translate(" + pie_arc.centroid(d) + ")"; })
     .attr("dy", ".35em")
-    .attr("class","arc_label")
-    .style("fill", function(d) { return flavor_color(d.data.value); } )
-    .style("text-anchor", "middle")
-    .text(function(d) { return d.data.key; });
+    .style("fill-opacity", function(d) { return flavor_opacity(d.data.value); } )
+    .text(function(d) { return onlyIfPresent(d).slice(0,3); });
+
+    pie_arc_g.on("mouseover", function() {
+      d3.select(this).select(".label.flavor").text(function(d) { return onlyIfPresent(d); });
+    });
+
+    pie_arc_g.on("mouseout", function() {
+      d3.select(this).select(".label.flavor").text(function(d) { return onlyIfPresent(d).slice(0,3); });
+    });
 
     pie_svgs.append("text")
-    .attr("class","distillery")
-    .style("text-anchor", "middle")
+    .attr("class","label distillery")
     .attr("dy", "0.5em")
     .text(function(d) {return d.Distillery;});
 });

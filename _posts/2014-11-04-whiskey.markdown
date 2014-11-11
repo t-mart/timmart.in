@@ -24,7 +24,7 @@ the donut. The strength of the flavor is encoded with **color** and **area**.
 
 I saw
 [another](http://wonkviz.tumblr.com/post/72159021235/whiskey-flavor-profiles)
-viz of this data, but I didn't think the [radar charts](http://en.wikipedia.org/wiki/Radar_chart) used worked very well. My main problem with them is that strong flavors can be masked if between two weak ones. Strong attributes should jump out at you, but unfortunately radar charts present this case as a thin spike will a small area.
+viz of this data, but I didn't think the [radar charts](http://en.wikipedia.org/wiki/Radar_chart) used worked very well. My main problem with them is that strong flavors can be masked if between two weak ones. Strong attributes should jump out at you, but unfortunately radar charts present this case as a thin spike with a small area.
 
 Cheers.
 
