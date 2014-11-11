@@ -52,6 +52,7 @@ aside {
   padding: 50px;
   background-color: #114768;
   color: #fefdf8;
+  text-align: center;
 }
 
 nav li {
@@ -166,10 +167,6 @@ article dl dt:after {
   content: ": ";
 }
 
-article dl dd {
-  /* display: inline; */
-}
-
 @media (max-width: 800px) {
   body > aside {
     width: 100%;
@@ -177,7 +174,8 @@ article dl dd {
     padding: 15px;
     position: static;
     margin: 0 auto;
-    text-align: center;
+    font-size: smaller;
+    line-height: 1.6em;
   }
   main {
     margin: 0 auto;
@@ -189,5 +187,6 @@ article dl dd {
   }
   #portrait {
     margin-top: 16px;
+    width: 40%;
   }
 }
