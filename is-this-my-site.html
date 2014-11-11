@@ -16,7 +16,7 @@
 
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/syntax-highlighting.css">
-    <link rel="canonical" href="http://timmart.in/is-this-my-site.html">
+    <link rel="canonical" href="https://timmart.in/is-this-my-site.html">
 
     
     
@@ -53,7 +53,7 @@ about super secret stuff. I jest, but I think it’s kinda cool.</p>
 <p>A while ago, I had my PGP key published on an unsecured site of mine. A
 friend quickly told me this was a problem: Without
 <a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">TLS</a> in
-place, the content on my site (including a PGP key) is not guaranteed to
+place, the content on my site, including a PGP key, is not guaranteed to
 have:</p>
 
 <dl>
@@ -66,7 +66,8 @@ have:</p>
 </dl>
 
 <p>But I have all that now with a certificate in place. So I can publish my
-PGP key and users can rest assured?</p>
+PGP key and security-conscious users can rest assured they’re getting the key
+they <em>think</em> they’re getting?</p>
 
 <p>Wrong.</p>
 
@@ -78,16 +79,16 @@ aforementioned <strong>authenticity*</strong>.</p>
 
 <p>As of right now, the only way to prove authenticity is for a <a href="http://en.wikipedia.org/wiki/Certificate_authority">Certificate
 Authority</a> to perform an
-identity check, the details of which are (simply) guidelined by the CA/Browser Forum in
+identity check, the details of which are (only) guidelined by the CA/Browser Forum in
 a document like
 <a href="https://cabforum.org/wp-content/uploads/EV-V1_5_2Libre.pdf">this</a>. Further,
 this check is only performed on applications for a different class of
 certificates known as <em>Extended Validation Certificates</em> (which generally cost
 considerably more), and this certificate is not one of them.</p>
 
-<p>(There are a lot of theoretical flaws in the CA scheme that accompany
-practically any notion of trust on the web. Some of these flaws have been
-acted upon. You should do some basic Wikipedia-ing on
+<p>(There are a lot of theoretical flaws and profit-centric motives in the CA
+scheme that accompany practically any notion of trust on the web. Some of
+these flaws have been acted upon. You should do some Wikipedia-ing on
 <a href="http://en.wikipedia.org/wiki/X.509">the</a>
 <a href="http://en.wikipedia.org/wiki/Extended_Validation_Certificate">matter</a> if
 you’re unfamiliar.)</p>
