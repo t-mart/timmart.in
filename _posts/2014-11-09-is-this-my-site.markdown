@@ -18,7 +18,7 @@ about super secret stuff. I jest, but I think it's kinda cool.
 A while ago, I had my PGP key published on an unsecured site of mine. A
 friend quickly told me this was a problem: Without
 [TLS](http://en.wikipedia.org/wiki/Transport_Layer_Security) in
-place, the content on my site (including a PGP key) is not guaranteed to
+place, the content on my site, including a PGP key, is not guaranteed to
 have:
 
 <dl>
@@ -31,7 +31,8 @@ have:
 </dl>
 
 But I have all that now with a certificate in place. So I can publish my
-PGP key and users can rest assured?
+PGP key and security-conscious users can rest assured they're getting the key
+they *think* they're getting?
 
 Wrong.
 
@@ -43,16 +44,16 @@ aforementioned **authenticity&#42;**.
 
 As of right now, the only way to prove authenticity is for a [Certificate
 Authority](http://en.wikipedia.org/wiki/Certificate_authority) to perform an
-identity check, the details of which are (simply) guidelined by the CA/Browser Forum in
+identity check, the details of which are (only) guidelined by the CA/Browser Forum in
 a document like
 [this](https://cabforum.org/wp-content/uploads/EV-V1_5_2Libre.pdf). Further,
 this check is only performed on applications for a different class of
 certificates known as *Extended Validation Certificates* (which generally cost
 considerably more), and this certificate is not one of them.
 
-(There are a lot of theoretical flaws in the CA scheme that accompany
-practically any notion of trust on the web. Some of these flaws have been
-acted upon. You should do some basic Wikipedia-ing on
+(There are a lot of theoretical flaws and profit-centric motives in the CA
+scheme that accompany practically any notion of trust on the web. Some of
+these flaws have been acted upon. You should do some Wikipedia-ing on
 [the](http://en.wikipedia.org/wiki/X.509)
 [matter](http://en.wikipedia.org/wiki/Extended_Validation_Certificate) if
 you're unfamiliar.)
