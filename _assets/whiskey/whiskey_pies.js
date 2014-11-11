@@ -30,7 +30,7 @@ d3.csv(dataPath)
 
   var flavor_opacity = d3.scale.linear()
     .domain([0, 4])
-    .range([0.0, 1.0]);
+    .range([0.2, 1.0]);
 
   var pie_arc = d3.svg.arc()
     .outerRadius(function(d,i) {
